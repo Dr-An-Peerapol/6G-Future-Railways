@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071526">
+<meta name="contributor" content="Dr Peerapol (An)">
+<title>DopplerLab — Direct & Reflected Railway Propagation | Dr Peerapol (An)</title>
+<style>
+:root{--bg:#071526;--panel:#0c2032;--panel2:#112a3e;--line:#244458;--text:#f0f7fa;--muted:#9fb4c4;--teal:#5ae5cc;--amber:#ffbf73;--blue:#76baff;--pink:#f09ed9;--lime:#c4f67b;--danger:#ff8f8f}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 85% -10%,#173d51 0%,transparent 35%),var(--bg);color:var(--text);font-family:Inter,"Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.48}button,input,select{font:inherit}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+a{color:var(--teal)}.wrap{max-width:1550px;margin:0 auto;padding:24px clamp(16px,3vw,48px) 54px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:31px}.brand{font-weight:850;letter-spacing:.13em;font-size:15px}.brand span{color:var(--teal)}.top-tag{border:1px solid #386577;border-radius:100px;padding:7px 12px;color:#b9d0d9;font-size:11px;letter-spacing:.13em;text-transform:uppercase}.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22px;align-items:end;margin-bottom:25px}.eyebrow{font-size:11px;color:var(--teal);font-weight:800;letter-spacing:.23em;text-transform:uppercase;margin:0 0 8px}.hero h1{font-size:clamp(35px,5.3vw,70px);letter-spacing:-.055em;line-height:1.04;margin:0 0 14px;font-weight:830}.hero h1 em{color:var(--teal);font-style:normal}.sub{max-width:830px;color:#acc4d0;font-size:15px;margin:0}.collaborator{display:inline-flex;align-items:center;gap:10px;margin-top:17px;padding:8px 14px;border:1px solid #326372;border-radius:999px;background:#0d2a3b;color:#d9eef3;font-size:12px}.collaborator-label{color:#71cabe;font-size:10px;text-transform:uppercase;letter-spacing:.11em;font-weight:800}.collaborator strong{font-weight:740}.status{display:flex;align-items:center;gap:9px;font-size:12px;color:#b4cfda;border:1px solid var(--line);border-radius:12px;padding:11px 14px;background:#0b2031;white-space:nowrap}.dot{width:7px;height:7px;background:var(--teal);box-shadow:0 0 0 5px #5ae5cc19;border-radius:50%;flex:none}.metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:26px 0}.metric{background:linear-gradient(145deg,#123247,#0b2032);border:1px solid var(--line);padding:16px 17px 13px;border-radius:14px;min-width:0}.metric .m-label{color:#9fb8c7;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}.metric strong{font-size:clamp(20px,2.5vw,31px);letter-spacing:-.045em;display:block;margin-top:4px;font-variant-numeric:tabular-nums;white-space:nowrap}.metric small{font-size:11px;color:#9fbdc8}.metric.accent strong{color:var(--teal)}.layout{display:grid;grid-template-columns:302px minmax(0,1fr);gap:18px;align-items:start}.sidebar{position:sticky;top:15px}.card{background:linear-gradient(165deg,#0d2537,#0a1d2e);border:1px solid var(--line);border-radius:18px;overflow:hidden}.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:17px 20px 4px}.card-head h2{font-size:16px;letter-spacing:-.018em;margin:0;font-weight:750}.card-head .micro{font-size:11px;color:var(--muted);margin:4px 0 0}.kicker{font-size:10px;font-weight:750;letter-spacing:.13em;color:var(--teal);text-transform:uppercase}.controls{padding:19px}.controls header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.controls h2{font-size:17px;margin:0}.control{margin:17px 0 19px}.control label{display:flex;align-items:center;justify-content:space-between;gap:7px;color:#d9e8ee;font-size:13px;font-weight:620;margin-bottom:8px}.control label output{color:var(--teal);font-variant-numeric:tabular-nums;font-weight:800;font-size:13px}.control .hint{font-size:10.5px;color:#86a4b4;margin:5px 0 0}input[type=range]{width:100%;accent-color:#61e7d0;cursor:pointer;margin:0}select{width:100%;background:#102d41;color:#e4f6f7;border:1px solid #325466;border-radius:9px;padding:9px 11px;cursor:pointer}.divider{height:1px;background:var(--line);margin:19px 0}.preset-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 4px}.preset{background:#112b3e;border:1px solid #355466;color:#dceef1;border-radius:10px;padding:10px 7px;text-align:center;font-size:11.5px;cursor:pointer;transition:.15s}.preset:hover,.preset.on{background:#1c4853;border-color:var(--teal);color:white}.legend{display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:10.5px;color:#b7ced6;margin:9px 0 0}.swatch{display:inline-block;width:14px;height:3px;vertical-align:middle;margin-right:5px;border-radius:3px}.canvas{width:100%;display:block}.sceneCanvas{height:226px}.plots{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}.plotCanvas{height:255px}.phasorCanvas{height:255px}.stage{padding:0 0 0}.scene-footer{padding:2px 20px 14px;font-size:11px;color:#a2bdca;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.transport{padding:15px 19px;border-top:1px solid var(--line);background:#0a1d2d}.playrow{display:flex;align-items:center;gap:15px}.playbtn{color:#071526;background:var(--teal);border:0;border-radius:9px;padding:10px 17px;font-weight:800;min-width:92px;cursor:pointer}.clock{color:#eafafa;font-weight:800;font-size:17px;font-variant-numeric:tabular-nums;white-space:nowrap}.scrub{flex:1;min-width:30px}.transport-details{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:8px;font-size:11px;color:#9fb4c4}.transport-details select{width:auto;padding:3px 7px;font-size:11px}.insights{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:16px}.insight{border:1px solid #29495d;border-radius:13px;background:#0c2536;padding:16px}.insight .subhead{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#9ebcc8;font-weight:800}.insight strong{display:block;font-size:23px;letter-spacing:-.03em;margin:5px 0;font-variant-numeric:tabular-nums}.insight p{color:#a7c1cb;font-size:12px;margin:0}.notes{margin-top:17px;padding:23px 25px}.notes h2{font-size:20px;margin:0 0 12px}.notes p{font-size:13px;color:#bed0da;margin:10px 0}.formulas{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.formula{background:#092034;border:1px solid #26465c;border-radius:10px;padding:13px;min-width:0}.formula span{display:block;text-transform:uppercase;letter-spacing:.09em;color:#86b5c6;font-size:10px;font-weight:700;margin-bottom:8px}.formula code{display:block;color:#f2f7fa;font-size:clamp(11px,1.1vw,14px);font-family:"Cambria Math",Consolas,monospace;white-space:normal;overflow-wrap:anywhere}.note-callout{border-left:3px solid var(--teal);background:#0a303b;padding:13px 15px;border-radius:0 9px 9px 0;color:#c8e4e8;font-size:12.5px;margin:15px 0}.footer{margin-top:26px;color:#89a5b3;font-size:11px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:17px}.pill{background:#1a4050;color:var(--teal);border:1px solid #356a71;border-radius:50px;font-size:10px;padding:4px 9px;white-space:nowrap}.mono{font-variant-numeric:tabular-nums}.pink{color:var(--pink)}.teal{color:var(--teal)}.amber{color:var(--amber)}.src-label{font-size:10px;color:#a0bcc9}.no-js{padding:25px;color:var(--amber)}
+@media(max-width:1150px){.layout{grid-template-columns:270px 1fr}.plots{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:780px){.hero{grid-template-columns:1fr}.status{width:max-content}.layout{grid-template-columns:1fr}.sidebar{position:static}.metrics{grid-template-columns:repeat(2,1fr)}.insights{grid-template-columns:1fr}.formulas{grid-template-columns:1fr}.top-tag{display:none}.plots{grid-template-columns:1fr}.sceneCanvas{height:210px}.plotCanvas{height:240px}.phasorCanvas{height:245px}.wrap{padding:18px 13px 44px}.metric strong{font-size:26px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+@media print{body{background:#fff;color:#111}.sidebar{position:static}.layout{display:block}.card{break-inside:avoid;margin:12px 0}.topbar{margin:4px 0}.preset{color:#111}}
+
+.sceneSvg{user-select:none;-webkit-user-select:none;display:block;width:100%;height:auto;background:#102b3d;aspect-ratio:1000/490;touch-action:pan-y}.sceneSvg text{font-family:Inter,"Segoe UI",system-ui,sans-serif}.geometry-details{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;padding:12px 19px 16px;border-top:1px solid var(--line)}.geometry-details>div{background:#102c40;padding:10px 11px;border:1px solid #2c4e60;border-radius:10px;min-width:0}.geometry-details small{font-size:10px;color:#a4bdcc;display:block}.geometry-details strong{font-size:15px;display:block;white-space:nowrap;letter-spacing:-.01em;margin-top:2px;font-variant-numeric:tabular-nums}.sceneHint{padding:0 19px 12px;font-size:11px;color:#a5becd}.sceneHint strong{color:var(--teal)}.sceneLegend{font-size:11px;display:flex;flex-wrap:wrap;gap:10px;padding:9px 19px 12px;border-top:1px solid var(--line);color:#b9d0d9}.sceneSvg .geometryTarget{cursor:grab;outline:none}.sceneSvg .geometryTarget:active{cursor:grabbing}.sceneSvg .geometryTarget:focus-visible .handleHalo{stroke:#bfffdc;stroke-width:3}.sceneSvg .handleHalo{stroke:transparent;stroke-width:3;fill:transparent}.sceneSvg .path{pointer-events:none}.control .value-help{font-size:10px;color:#85acbc}.scene-footer.compact{padding-top:7px}.rp-badge{fill:#0e263a;stroke:#31546b;stroke-width:1}.rp-metric{font-size:15px;fill:#cee6f0;font-weight:700}.rp-sub{font-size:13px;fill:#96b6c8}.rp-color-direct{fill:#76baff}.rp-color-reflected{fill:#f09ed9}.sceneSvg .wave-dot{pointer-events:none}
+@media(max-width:1000px){.geometry-details{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:540px){.sceneHint{font-size:10px}.geometry-details strong{font-size:13px}.sceneSvg{min-height:240px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <header class="topbar"><div class="brand">DOPPLER<span>LAB</span> <span style="color:#7c99a9;font-size:10px;font-weight:500;letter-spacing:0">/ SIGNAL PROCESSING NOTEBOOK</span></div><div class="top-tag">Geometric multipath · 1×4 SIMO · Offline</div></header>
+ <div class="hero"><div><p class="eyebrow">High-speed railway · Interactive laboratory</p><h1>Chase the <em>fading</em><br>channel.</h1><p class="sub">One base station. One direct signal and one reflected signal. Move the transmitter and scatterer, see how real path lengths determine Doppler and phase, and explore predictive four-antenna SIMO reception.</p><div class="collaborator"><span class="collaborator-label">Collaborator</span><strong>Dr Peerapol (An)</strong></div></div><div class="status"><span class="dot"></span> Live geometry · narrowband two-ray model</div></div>
+ <section class="metrics" aria-label="Live channel parameters">
+   <div class="metric"><div class="m-label">Maximum Doppler</div><strong id="mDoppler">—</strong><small>Hz · v / wavelength</small></div>
+   <div class="metric"><div class="m-label">Ray 1 Doppler</div><strong id="mF1">—</strong><small>Hz · direct ray</small></div>
+   <div class="metric"><div class="m-label">Ray 2 Doppler</div><strong id="mF2">—</strong><small>Hz · reflected ray</small></div>
+   <div class="metric accent"><div class="m-label">Doppler separation</div><strong id="mDelta">—</strong><small>Hz · |f₁ − f₂|</small></div>
+   <div class="metric"><div class="m-label">Beat period</div><strong id="mBeat">—</strong><small>ms · local beat-period estimate</small></div>
+ </section>
+ <div class="layout">
+  <aside class="sidebar"><section class="card controls" aria-label="Simulation controls">
+    <header><h2>Experiment controls</h2><span class="pill">REAL-TIME</span></header>
+    <div class="kicker">Choose a scenario</div>
+    <div class="preset-grid">
+      <button class="preset on" data-preset="beat">≈1 ms beating</button>
+      <button class="preset" data-preset="locked">Matched Doppler</button>
+      <button class="preset" data-preset="rapid">Fast fading</button>
+      <button class="preset" data-preset="slow">Slow train</button>
+    </div>
+    <div class="divider"></div>
+    <div class="control"><label for="speed">Train speed <output id="speedVal">350 km/h</output></label><input id="speed" type="range" min="0" max="600" step="10" value="350"><p class="hint">Train moves along the +x direction. Physical displacement is computed in meters.</p></div>
+    <div class="control"><label for="fc">Carrier frequency <output id="fcVal">28 GHz</output></label><select id="fc"><option value="3.5">3.5 GHz · sub-6</option><option value="6">6 GHz · upper sub-6</option><option value="28" selected>28 GHz · mmWave</option><option value="60">60 GHz · mmWave</option></select></div>
+    <div class="divider"></div>
+    <div class="kicker">Real propagation geometry</div>
+    <p class="hint" style="margin:7px 0 12px">The transmitter and reflector are <strong>fixed in world coordinates</strong>. Both rays start at the same base station. Drag either marker in the scene or use the sliders.</p>
+    <div class="control"><label for="bsX">Base station · along track <output id="bsXVal">+130 m</output></label><input id="bsX" type="range" min="-140" max="180" step="5" value="130"></div>
+    <div class="control"><label for="bsY">Base station · track offset <output id="bsYVal">75 m</output></label><input id="bsY" type="range" min="30" max="100" step="5" value="75"></div>
+    <div class="control"><label for="refX">Reflector · along track <output id="refXVal">+100 m</output></label><input id="refX" type="range" min="-140" max="180" step="5" value="100"></div>
+    <div class="control"><label for="refY">Reflector · track offset <output id="refYVal">88 m</output></label><input id="refY" type="range" min="30" max="110" step="1" value="88"><p class="hint">Reflector lies on the opposite side of the track.</p></div>
+    <div class="divider"></div>
+    <div class="kicker">Two-ray propagation</div>
+    <div class="control"><label for="pow2">Reflected power share <output id="pow2Val">35%</output></label><input id="pow2" type="range" min="0" max="90" step="1" value="35"><p class="hint">Manual relative path power. Includes reflection loss phenomenologically; not a ray-tracing path-loss calculation.</p></div>
+    <div class="control"><label for="reflPhase">Reflection phase shift <output id="reflPhaseVal">180°</output></label><input id="reflPhase" type="range" min="0" max="360" step="5" value="180"><p class="hint">Additional phase applied at the reflecting structure. Physical propagation phase is computed from path lengths.</p></div>
+    <div class="divider"></div>
+    <div class="kicker">CSI prediction experiment</div>
+    <div class="control"><label for="err">Doppler estimation error <output id="errVal">±50 Hz</output></label><input id="err" type="range" min="0" max="200" step="5" value="50"><p class="hint">Prediction adds +error to the direct-ray Doppler and −error to the reflected-ray Doppler; zero error recovers ideal prediction.</p></div>
+    <div class="control"><label for="horizon">Plot time window <output id="horizonVal">3 ms</output></label><select id="horizon"><option value="1">1 ms</option><option value="3" selected>3 ms</option><option value="5">5 ms</option><option value="10">10 ms</option></select></div>
+    <p style="font-size:11px;color:#9bb6c2;margin-top:23px">SIMO: 1×4 transverse array, λ/2 spacing. Each element's path length is computed individually. Link B remains an idealized reference with four-antenna MRC gain 3.2.</p>
+  </section></aside>
+  <main class="stage">
+    <section class="card">
+      <div class="card-head"><div><span class="kicker">01 / Propagation geometry</span><h2>One transmitter, two paths: direct and reflected</h2><p class="micro">Source-centric top-down view · path length and Doppler derived from the same geometry</p></div><span class="pill">v →</span></div>
+      <svg id="sceneSvg" class="sceneSvg" viewBox="0 0 1000 490" role="img" aria-label="A train traverses the entire screen from left to right; one base station sends direct and reflected rays to a four-antenna receiver">
+        <defs>
+          <pattern id="rp-grid" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M 80 0 L 0 0 0 80" fill="none" stroke="#254b60" stroke-width="1" opacity=".58"/></pattern>
+          <marker id="rp-arrow-direct" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.4" markerHeight="5.4" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#76baff"/></marker>
+          <marker id="rp-arrow-reflected" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.4" markerHeight="5.4" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#f09ed9"/></marker>
+          <filter id="rp-halo"><feGaussianBlur stdDeviation="4"/></filter>
+          <linearGradient id="rp-rail"><stop stop-color="#1a3744"/><stop offset=".5" stop-color="#284958"/><stop offset="1" stop-color="#1a3744"/></linearGradient>
+        </defs>
+        <rect x="0" y="0" width="1000" height="490" fill="#102b3d"/>
+        <rect x="0" y="0" width="1000" height="490" fill="url(#rp-grid)"/>
+        <rect x="0" y="210" width="1000" height="84" fill="url(#rp-rail)"/>
+        <path d="M0 215 H1000 M0 289 H1000" stroke="#7fa2af" stroke-width="3" opacity=".75"/>
+        <g id="rp-ties" stroke="#5e8291" stroke-width="3" opacity=".75"></g>
+        <path id="rp-los" class="path" stroke="#76baff" stroke-width="4" stroke-linecap="round" fill="none" marker-end="url(#rp-arrow-direct)"/>
+        <path id="rp-refl" class="path" stroke="#f09ed9" stroke-width="3.6" stroke-linecap="round" stroke-dasharray="12 9" fill="none" marker-end="url(#rp-arrow-reflected)"/>
+        <circle id="rp-wave-direct-1" class="wave-dot" r="5" fill="#9ccfff"/>
+        <circle id="rp-wave-direct-2" class="wave-dot" r="4" fill="#76baff"/>
+        <circle id="rp-wave-reflect-1" class="wave-dot" r="5" fill="#ffbae8"/>
+        <circle id="rp-wave-reflect-2" class="wave-dot" r="4" fill="#f09ed9"/>
+        <g id="rp-bs" class="geometryTarget" tabindex="0" role="button" aria-label="Drag or use arrow keys to adjust base station location">
+          <circle class="handleHalo" r="35"/>
+          <circle r="26" fill="#164657" stroke="#6de6d5" stroke-width="1.4"/>
+          <path d="M0 -22 V13 M-12 14 H12 M0 -17 L-11 10 H11 Z" stroke="#6de6d5" fill="none" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M-16 -11 Q-26 -1 -16 10 M16 -11 Q26 -1 16 10" stroke="#6de6d5" stroke-width="2" fill="none"/>
+          <text x="0" y="-40" text-anchor="middle" fill="#b8fff2" font-size="17" font-weight="750">BASE STATION</text>
+          <text x="0" y="44" text-anchor="middle" fill="#b0d3dd" font-size="12">Common source · drag</text>
+        </g>
+        <g id="rp-structure" class="geometryTarget" tabindex="0" role="button" aria-label="Drag or use arrow keys to adjust reflecting structure location">
+          <circle class="handleHalo" r="36"/>
+          <rect x="-22" y="-23" width="44" height="46" rx="5" fill="#493d39" stroke="#fac77f" stroke-width="2"/>
+          <path d="M-14 -14 L14 -14 M-14 -5 L14 -5 M-14 4 L14 4 M-14 13 L14 13" stroke="#f4b86f" stroke-width="2"/>
+          <circle r="6" fill="#ffe0ad"/>
+          <text x="0" y="-36" text-anchor="middle" fill="#ffe1b3" font-size="16" font-weight="750">REFLECTOR</text>
+          <text x="0" y="40" text-anchor="middle" fill="#e2c59d" font-size="12">Stationary scatterer · drag</text>
+        </g>
+        <g id="rp-train" transform="translate(415 252)">
+          <rect x="-70" y="-26" width="140" height="52" rx="19" fill="#c3ebf1" stroke="#77dcd8" stroke-width="4"/>
+          <rect x="-59" y="-16" width="99" height="32" rx="10" fill="#18394d"/>
+          <g fill="#77c2d7"><rect x="-47" y="-10" width="16" height="20" rx="3"/><rect x="-22" y="-10" width="16" height="20" rx="3"/><rect x="3" y="-10" width="16" height="20" rx="3"/></g>
+          <path d="M70 -25 L89 0 L70 25 Z" fill="#5de9ce"/>
+          <g fill="#ffc27a"><rect x="-37" y="-30" width="5" height="5"/><rect x="-17" y="-30" width="5" height="5"/><rect x="3" y="-30" width="5" height="5"/><rect x="23" y="-30" width="5" height="5"/></g>
+          <text x="0" y="54" text-anchor="middle" fill="#f2ffff" font-size="19" font-weight="800">TRAIN · 4 Rx</text>
+        </g>
+        <text id="rp-label-direct" x="550" y="150" fill="#99ceff" font-size="17" font-weight="700">RAY 1 · DIRECT</text>
+        <text id="rp-label-reflected" x="710" y="369" fill="#f8b4e3" font-size="17" font-weight="700">RAY 2 · REFLECTED</text>
+        <text x="30" y="42" fill="#a4c3d1" font-size="15">ONE TRANSMITTER · TWO PROPAGATION ROUTES</text>
+        <path d="M828 344 H956 L942 334 M956 344 L942 354" stroke="#c4f67b" stroke-width="4" fill="none"/>
+        <text id="rp-train-speed" x="829" y="329" fill="#c4f67b" font-size="20" font-weight="700">350 km/h</text>
+      </svg>
+      <div class="sceneLegend"><span><span class="swatch" style="background:var(--blue)"></span>Ray 1: Base station → train</span><span><span class="swatch" style="background:var(--pink)"></span>Ray 2: Base station → reflector → train</span><span>Both carry the same transmitted signal</span></div>
+      <div class="geometry-details" aria-label="Current ray geometry">
+        <div><small>Direct arrival angle</small><strong id="geoAngle1">—</strong></div>
+        <div><small>Reflected arrival angle</small><strong id="geoAngle2">—</strong></div>
+        <div><small>Extra reflected distance</small><strong id="geoExtra">—</strong></div>
+        <div><small>Excess delay</small><strong id="geoDelay">—</strong></div>
+      </div>
+      <div class="sceneHint"><strong>Full-track animation:</strong> the train travels from the far left to the far right and repeats. <strong id="rp-travel-progress">0%</strong> of the visual crossing · actual movement within this channel window: <strong id="rp-physical-move">0.000 m</strong>. <strong>Visual travel is exaggerated</strong>; Doppler, phases, and graphs use the physical displacement. Drag the base station or reflector to change the physics.</div>
+      <div class="transport"><div class="playrow"><button class="playbtn" id="play" aria-label="Play or pause simulation">▶ Play</button><input aria-label="Scrub future time in milliseconds" class="scrub" id="scrub" type="range" min="0" max="3" step="0.002" value="0"><div id="clock" class="clock">0.000 ms</div></div><div class="transport-details"><span>▶ Play follows the train all the way across the track, then loops.</span><label>Visual playback <select id="pace" aria-label="Visual playback rate"><option value="0.4">Slow</option><option value="0.9" selected>Normal</option><option value="2.0">Fast</option><option value="3.5">Very fast</option></select></label></div></div>
+    </section>
+    <div class="plots">
+      <section class="card"><div class="card-head"><div><span class="kicker">02 / Interference</span><h2>Channel power over time</h2><p class="micro">Single antenna versus perfect four-antenna MRC</p></div></div><canvas class="canvas plotCanvas" id="powerPlot" aria-label="Channel power over time for single and four-antenna reception"></canvas><div class="scene-footer"><span><span class="swatch" style="background:var(--blue)"></span>Link A · 1 antenna</span><span><span class="swatch" style="background:var(--lime)"></span>A · 4-antenna MRC</span><span><span class="swatch" style="background:var(--pink)"></span>Link B · 4 MRC</span></div></section>
+      <section class="card"><div class="card-head"><div><span class="kicker">03 / Spatial processing</span><h2>What CSI aging costs</h2><p class="micro">Actual geometric channel · three combining strategies</p></div></div><canvas class="canvas plotCanvas" id="combinePlot" aria-label="Comparison of ideal, stale, and predictive MRC gain"></canvas><div class="scene-footer"><span><span class="swatch" style="background:var(--lime)"></span>Perfect MRC</span><span><span class="swatch" style="background:var(--amber)"></span>Stale MRC</span><span><span class="swatch" style="background:var(--blue)"></span>Predictive MRC</span></div></section>
+      <section class="card"><div class="card-head"><div><span class="kicker">04 / Complex-plane intuition</span><h2>Why the rays cancel or reinforce</h2><p class="micro">Phasors relative to direct ray · actual path-length and reflection phase</p></div></div><canvas class="canvas phasorCanvas" id="phasors" aria-label="Relative phasor diagram showing interference of Doppler-shifted waves"></canvas><div class="scene-footer"><span><span class="swatch" style="background:var(--blue)"></span>Ray 1</span><span><span class="swatch" style="background:var(--pink)"></span>Ray 2</span><span><span class="swatch" style="background:var(--lime)"></span>Sum</span></div></section>
+      <section class="card"><div class="card-head"><div><span class="kicker">05 / Spatial diversity</span><h2>Power at each receive antenna</h2><p class="micro">Same instant · four different spatial interference patterns</p></div></div><canvas class="canvas phasorCanvas" id="antennaPlot" aria-label="Received power at each of four antenna elements"></canvas><div class="scene-footer"><span>Half-wavelength separation</span><span id="spatialOverlap">Spatial overlap: —</span></div></section>
+    </div>
+    <section class="insights" aria-label="Instantaneous metrics">
+       <div class="insight"><span class="subhead">Link A · Antenna 1</span><strong id="powerOne" class="teal">—</strong><p>Instantaneous channel power of the first branch.</p></div>
+       <div class="insight"><span class="subhead">Link A · Perfect 4-Rx</span><strong id="powerFour">—</strong><p>Combined spatial channel power; may remain strong during a single-antenna fade.</p></div>
+       <div class="insight"><span class="subhead">Stale MRC captures</span><strong id="captured" class="amber">—</strong><p id="interpret">Fraction of Link A's available four-antenna power captured using the weights from time zero.</p></div>
+    </section>
+    <section class="card notes">
+      <span class="kicker">The mathematics behind the animation</span><h2>One physical model, three perspectives</h2>
+      <p>A single stationary base station transmits a narrowband carrier to a moving train. Ray 1 reaches the receiver directly. Ray 2 propagates via a fixed trackside reflecting/scattering point. The receiver travels along +x, and its four antenna elements lie along the transverse −y direction, spaced by λ/2. The source and reflector locations use meters relative to the train at time zero.</p>
+      <div class="formulas">
+        <div class="formula"><span>Direct and reflected path lengths</span><code>L₁(t) = ‖BS − Rx(t)‖<br>L₂(t) = ‖BS − S‖ + ‖S − Rx(t)‖</code></div>
+        <div class="formula"><span>Instantaneous Doppler from the final leg</span><code>f<sub>D,ℓ</sub>(t) = (v/λ)cos α<sub>ℓ</sub>(t) = −(1/λ) dL<sub>ℓ</sub>/dt</code></div>
+        <div class="formula"><span>Per-antenna geometric channel</span><code>h<sub>n</sub>(t) = √P₁ e<sup>−j2πL₁,n(t)/λ</sup> + √P₂ e<sup>−j2πL₂,n(t)/λ+jφ<sub>R</sub></sup></code></div>
+      </div>
+      <p><strong>What changed:</strong> All ray directions, Doppler shifts, propagation phases and array steering phases now follow from the <em>same transmitter/reflector/train geometry</em>. The additional reflection phase φ<sub>R</sub> is adjustable. Because the paths have different lengths, their initial phases are generally not aligned; deep fades need not fall at exactly 0.5 ms.</p>
+      <p>For small train movements, the Doppler difference approximates the beat frequency. The instantaneous fading can depart slightly from a perfect sinusoid as the arrival angles vary. Changing the reflector's position changes both <strong>its final arrival angle</strong> and the <strong>total propagation delay</strong>.</p>
+      <p>For the 1×4 SIMO receiver, perfect-CSI maximum-ratio combining captures gain <strong>‖h(t)‖²</strong>. Stale MRC achieves <strong>|h(0)ᴴh(t)|² / ‖h(0)‖²</strong>. Predictive MRC uses the correct nominal geometry but intentionally adds opposite Doppler biases of ±error Hz to the two paths.</p>
+      <div class="note-callout"><strong>Try this sequence:</strong> Start with ≈1 ms beating. Drag the reflector to change the beat period. Change its power and phase to explore deep versus shallow fades. Select <em>Matched Doppler</em> to make the local Doppler frequencies equal at time zero. Scrub to examine phasors, four-branch power and stale/predictive MRC. Finally set the prediction error to zero: predictive MRC should match perfect MRC.</div>
+      <p><strong>Animation scale:</strong> The SVG train runs across the full screen during each short prediction window to make motion visible. The screen movement is a separate illustrative timeline, not the position used by the physically calibrated ray equations. For example, at 350 km/h the real train travels only 0.292 m over 3 ms. The plotted Doppler and fading use that 0.292 m of travel, not the hundreds of schematic screen units.</p>
+      <p><strong>Important limits:</strong> The reflecting point is a simplified stationary scatterer, not a validated specular wall with electromagnetic boundary conditions. Relative ray powers are user-selected rather than predicted from reflection coefficients and path loss. Paths are modeled as narrowband phasors, so geometric excess delay is displayed but not simulated as intersymbol interference. Link B retains a constant-power single-ray benchmark. All four antenna samples and nominal geometry are assumed available, with no RF synchronization, blockage, mutual coupling or estimation overhead. These plots depict effective channel gains—not measured BER, packet reliability or an operational 6G design.</p>
+    </section>
+  </main>
+ </div>
+ <footer class="footer"><span>High-Speed Railway Signal Processing Notebook · SIMO / Doppler interactive experiment<br><strong style="color:#cbe8e9;font-weight:650">Collaborator: Dr Peerapol (An)</strong></span><span>Version 2.1 · Full-track animation · Geometric rays · Standalone HTML · Works offline</span></footer>
+</div>
+<noscript><div class="no-js">Enable JavaScript to use the interactive railway channel demonstration.</div></noscript>
+<script>
+(()=>{'use strict';
+const $=s=>document.getElementById(s), C=299792458, PI=Math.PI, TAU=2*PI;
+const inp=['speed','fc','bsX','bsY','refX','refY','pow2','reflPhase','err','horizon'];
+const colors={blue:'#76baff',pink:'#f09ed9',lime:'#c4f67b',amber:'#ffbf73',grid:'#29465a',text:'#acbfcd'};
+let params=null,cache=[],nowMs=0,playing=false,lastFrame=null,dragging=null;
+const fmt=(n,d=1)=>Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const degree=n=>(n>=0?'+':'')+fmt(n,1)+'°';
+const abs2=z=>z.re*z.re+z.im*z.im;
+const norm2=vec=>vec.reduce((s,z)=>s+abs2(z),0);
+const conjdot=(u,v)=>{let re=0,im=0;for(let i=0;i<u.length;i++){re+=u[i].re*v[i].re+u[i].im*v[i].im;im+=u[i].re*v[i].im-u[i].im*v[i].re;}return {re,im};};
+const gain=(w,h)=>{const n=norm2(w);return n>1e-12?abs2(conjdot(w,h))/n:0;};
+function readParams(){const p={};for(const k of inp)p[k]=+$(k).value;p.v=p.speed/3.6;p.wavelength=C/(p.fc*1e9);p.k=TAU/p.wavelength;p.fmax=p.v/p.wavelength;p.aMag=Math.sqrt(1-p.pow2/100);p.bMag=Math.sqrt(p.pow2/100);p.reflectRad=p.reflPhase*PI/180;return p;}
+const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+function geometryAt(t){
+ const p=params,train={x:p.v*t,y:0},bs={x:p.bsX,y:p.bsY},reflect={x:p.refX,y:-p.refY};
+ const l1=dist(bs,train),l2=dist(bs,reflect)+dist(reflect,train);
+ // Angles point from the moving receiver toward the final source of each arriving leg.
+ const alpha1=Math.atan2(bs.y-train.y,bs.x-train.x),alpha2=Math.atan2(reflect.y-train.y,reflect.x-train.x);
+ const f1=p.fmax*Math.cos(alpha1),f2=p.fmax*Math.cos(alpha2);
+ return {bs,reflect,train,l1,l2,extra:l2-l1,delay:(l2-l1)/C,alpha1,alpha2,f1,f2,delta:f2-f1};
+}
+function rayAt(t){
+ const p=params,trX=p.v*t,bs={x:p.bsX,y:p.bsY},reflect={x:p.refX,y:-p.refY};
+ const firstLeg=dist(bs,reflect);
+ const r1=[],r2=[];
+ for(let n=0;n<4;n++){
+  const rx={x:trX,y:-n*p.wavelength/2};
+  const L1=dist(bs,rx),L2=firstLeg+dist(reflect,rx);
+  // Physical carrier-phase delay exp(-j 2pi L/lambda), plus reflection phase.
+  const ph1=-p.k*L1,ph2=-p.k*L2+p.reflectRad;
+  r1.push({re:p.aMag*Math.cos(ph1),im:p.aMag*Math.sin(ph1)});
+  r2.push({re:p.bMag*Math.cos(ph2),im:p.bMag*Math.sin(ph2)});
+ }
+ return {r1,r2};
+}
+function getChannel(t,predict=false){
+ const {r1,r2}=rayAt(t);const p=params;
+ const e1=predict?TAU*p.err*t:0,e2=predict?-TAU*p.err*t:0;
+ const c1=Math.cos(e1),s1=Math.sin(e1),c2=Math.cos(e2),s2=Math.sin(e2);
+ const h=r1.map((a,n)=>{const b=r2[n];return {re:a.re*c1-a.im*s1+b.re*c2-b.im*s2,im:a.re*s1+a.im*c1+b.re*s2+b.im*c2};});
+ return {h,r1,r2};
+}
+function computeAt(ms,h0){const t=ms/1000;const actual=getChannel(t),pred=getChannel(t,true).h,h=actual.h;
+ const four=norm2(h),stale=gain(h0,h),prediction=gain(pred,h);
+ return {ms,one:abs2(h[0]),four,stale,prediction,branches:h.map(abs2),ray1:actual.r1[0],ray2:actual.r2[0]};}
+function recalc(){params=readParams();nowMs=Math.min(nowMs,params.horizon);const h0=getChannel(0).h,steps=850;cache=Array.from({length:steps+1},(_,i)=>computeAt(params.horizon*i/steps,h0));
+ $('speedVal').textContent=params.speed+' km/h';$('fcVal').textContent=params.fc+' GHz';
+ $('bsXVal').textContent=(params.bsX>=0?'+':'')+params.bsX+' m';$('bsYVal').textContent=params.bsY+' m';
+ $('refXVal').textContent=(params.refX>=0?'+':'')+params.refX+' m';$('refYVal').textContent=params.refY+' m';
+ $('pow2Val').textContent=params.pow2+'%';$('reflPhaseVal').textContent=params.reflPhase+'°';
+ $('errVal').textContent='±'+params.err+' Hz';$('horizonVal').textContent=params.horizon+' ms';
+ $('scrub').max=params.horizon;$('scrub').value=nowMs;
+ render();
+}
+function layoutCanvas(id){const cv=$(id),rect=cv.getBoundingClientRect(),w=Math.max(100,Math.round(rect.width)),h=Math.max(100,Math.round(rect.height)),dpr=Math.min(2,window.devicePixelRatio||1);if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);}const ctx=cv.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);return {ctx,w,h};}
+function text(ctx,str,x,y,{color=colors.text,size=11,align='left',weight=500}={}){ctx.fillStyle=color;ctx.textAlign=align;ctx.textBaseline='middle';ctx.font=`${weight} ${size}px Segoe UI,Arial,sans-serif`;ctx.fillText(str,x,y);}
+function line(ctx,x1,y1,x2,y2,color,width=1,dash=[]){ctx.strokeStyle=color;ctx.lineWidth=width;ctx.setLineDash(dash);ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.setLineDash([]);}
+function rounded(ctx,x,y,w,h,r,fill){ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fillStyle=fill;ctx.fill();}
+function arrow(ctx,x1,y1,x2,y2,color,width=2){line(ctx,x1,y1,x2,y2,color,width);let ang=Math.atan2(y2-y1,x2-x1),r=8;ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-r*Math.cos(ang-PI/6),y2-r*Math.sin(ang-PI/6));ctx.lineTo(x2-r*Math.cos(ang+PI/6),y2-r*Math.sin(ang+PI/6));ctx.closePath();ctx.fill();}
+function svgAttr(id,name,value){$(id).setAttribute(name,value);}
+const sx=x=>415+2.16*x,sy=y=>252-2.05*y;
+function tween(a,b,f){return {x:a.x+(b.x-a.x)*f,y:a.y+(b.y-a.y)*f};}
+function setCircle(id,point){svgAttr(id,'cx',point.x.toFixed(2));svgAttr(id,'cy',point.y.toFixed(2));}
+function drawScene(){
+ const g=geometryAt(nowMs/1000),p=params;
+ const bs={x:sx(g.bs.x),y:sy(g.bs.y)},ref={x:sx(g.reflect.x),y:sy(g.reflect.y)};
+ // The animation traverses the entire track, independently of the physical
+ // sub-millisecond displacement used by rayAt() and geometryAt().
+ // The body of the train extends ~70 px left and ~89 px right of its center.
+ // Start/end positions keep the complete vehicle visible at both extremes.
+ const fraction=Math.max(0,Math.min(1,nowMs/Math.max(1e-9,p.horizon)));
+ const leftEdge=84, rightEdge=906;
+ const fakeX=(p.speed>0)?leftEdge+(rightEdge-leftEdge)*fraction:leftEdge;
+ const train={x:fakeX,y:252};
+ // This long visual traversal is explicitly NOT drawn to physical scale.
+ svgAttr('rp-bs','transform',`translate(${bs.x} ${bs.y})`);
+ svgAttr('rp-structure','transform',`translate(${ref.x} ${ref.y})`);
+ svgAttr('rp-train','transform',`translate(${train.x} 252)`);
+ svgAttr('rp-los','d',`M${bs.x} ${bs.y} L${train.x} ${train.y}`);
+ svgAttr('rp-refl','d',`M${bs.x} ${bs.y} L${ref.x} ${ref.y} L${train.x} ${train.y}`);
+ const u=(nowMs*1.20)%1;
+ const pr=tween(bs,train,u),pr2=tween(bs,train,(u+.54)%1);
+ setCircle('rp-wave-direct-1',pr);setCircle('rp-wave-direct-2',pr2);
+ // Piecewise linear progression along the two segments.
+ const d1=Math.hypot(ref.x-bs.x,ref.y-bs.y),d2=Math.hypot(train.x-ref.x,train.y-ref.y);
+ function pathPoint(phase){const q=phase*(d1+d2);return q<=d1?tween(bs,ref,q/Math.max(d1,1e-9)):tween(ref,train,(q-d1)/Math.max(d2,1e-9));}
+ setCircle('rp-wave-reflect-1',pathPoint((u+.11)%1));setCircle('rp-wave-reflect-2',pathPoint((u+.61)%1));
+ const dmid=tween(bs,train,.48),rmid=tween(ref,train,.50);
+ svgAttr('rp-label-direct','x',Math.max(115,Math.min(855,dmid.x-40)));svgAttr('rp-label-direct','y',Math.max(62,dmid.y-47));
+ svgAttr('rp-label-reflected','x',Math.max(100,Math.min(790,rmid.x+38)));svgAttr('rp-label-reflected','y',Math.min(465,rmid.y-22));
+ $('rp-train-speed').textContent=p.speed+' km/h';
+ $('rp-travel-progress').textContent=fmt((p.speed>0?fraction:0)*100,0)+'%';
+ $('rp-physical-move').textContent=fmt(p.v*nowMs/1000,3)+' m';
+ $('geoAngle1').textContent=degree(g.alpha1*180/PI);
+ $('geoAngle2').textContent=degree(g.alpha2*180/PI);
+ $('geoExtra').textContent=fmt(g.extra,2)+' m';
+ $('geoDelay').textContent=fmt(g.delay*1e9,2)+' ns';
+}
+function drawGraph(id,series){const {ctx,w,h}=layoutCanvas(id),margin={l:42,r:15,t:15,b:36},pw=w-margin.l-margin.r,ph=h-margin.t-margin.b;let ymax=4.5;for(const s of series)for(const v of s.values)if(Number.isFinite(v))ymax=Math.max(ymax,v*1.07);ymax=Math.ceil(ymax*2)/2;const X=t=>margin.l+t/params.horizon*pw,Y=v=>margin.t+ph-(v/ymax)*ph;
+ for(let j=0;j<=4;j++){const py=margin.t+ph*j/4;line(ctx,margin.l,py,w-margin.r,py,colors.grid,1);text(ctx,fmt(ymax*(4-j)/4,1),margin.l-7,py,{size:10,align:'right'});}for(let j=0;j<=5;j++){const tx=j*params.horizon/5,px=X(tx);line(ctx,px,margin.t,px,margin.t+ph,'#203b4f',1);text(ctx,fmt(tx,params.horizon<=1?2:1),px,h-19,{size:10,align:'center'});}text(ctx,'Power gain',6,7,{size:10,color:'#b8cbd6'});text(ctx,'Future time (ms)',w-margin.r,h-5,{size:10,align:'right'});
+ for(const s of series){ctx.beginPath();ctx.strokeStyle=s.color;ctx.lineWidth=s.width||2;ctx.setLineDash(s.dash||[]);for(let i=0;i<cache.length;i++){const px=X(cache[i].ms),py=Y(s.values[i]);i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);}ctx.stroke();ctx.setLineDash([]);}
+ const cx=X(nowMs),samp=computeAt(nowMs,getChannel(0).h);line(ctx,cx,margin.t,cx,margin.t+ph,'#e2f1f99a',1,[3,4]);
+ for(const s of series){const val=s.kind==='one'?samp.one:s.kind==='four'?samp.four:s.kind==='stale'?samp.stale:s.kind==='pred'?samp.prediction:s.kind==='b'?3.2:0,cy=Y(val);ctx.beginPath();ctx.arc(cx,cy,4.5,0,TAU);ctx.fillStyle=s.color;ctx.fill();ctx.strokeStyle='#0b2031';ctx.lineWidth=1.5;ctx.stroke();}
+}
+function drawPhasors(samp){const {ctx,w,h}=layoutCanvas('phasors'),cx=w*.43,cy=h*.52,radius=Math.min(h*.30,w*.22),a=params.aMag,b=params.bMag,ph1=Math.atan2(samp.ray1.im,samp.ray1.re),ph2=Math.atan2(samp.ray2.im,samp.ray2.re),phi=ph2-ph1,br=b*Math.cos(phi),bi=b*Math.sin(phi),sr=a+br,si=bi,scale=radius/Math.max(1,a+b),X=x=>cx+x*scale,Y=y=>cy-y*scale;
+ ctx.strokeStyle='#24465b';ctx.lineWidth=1;ctx.beginPath();ctx.arc(cx,cy,radius,0,TAU);ctx.stroke();line(ctx,16,cy,w-17,cy,'#305166',1);line(ctx,cx,15,cx,h-22,'#305166',1);text(ctx,'Re',w-23,cy-11,{size:10});text(ctx,'Im',cx+8,19,{size:10});
+ arrow(ctx,cx,cy,X(a),Y(0),colors.blue,3);arrow(ctx,X(a),Y(0),X(sr),Y(si),colors.pink,3);arrow(ctx,cx,cy,X(sr),Y(si),colors.lime,3.5);ctx.fillStyle=colors.lime;ctx.beginPath();ctx.arc(X(sr),Y(si),4,0,TAU);ctx.fill();
+ const wrapped=((phi*180/PI)%360+360)%360,tx=w*.79;text(ctx,'RELATIVE PHASE',tx,33,{size:10,align:'center',color:'#9ebcc8',weight:700});text(ctx,fmt(wrapped,0)+'°',tx,58,{size:22,align:'center',color:colors.lime,weight:800});text(ctx,'|h₁(t)|²',tx,100,{size:11,align:'center'});text(ctx,fmt(samp.one,2),tx,125,{size:22,align:'center',color:colors.blue,weight:750});text(ctx,'Direct phase:',tx,h-45,{size:9,align:'center'});text(ctx,'reference = 0°',tx,h-31,{size:9,align:'center'});
+}
+function drawAntennaBars(samp){const {ctx,w,h}=layoutCanvas('antennaPlot'),maxval=Math.max(2.2,...samp.branches)*1.12,l=42,r=12,t=12,b=40,plotW=w-l-r,plotH=h-t-b;for(let k=0;k<4;k++){let py=t+plotH*k/3;line(ctx,l,py,w-r,py,'#203c4d',1);text(ctx,fmt(maxval*(3-k)/3,1),l-7,py,{size:10,align:'right'});}const gap=plotW/4,bw=Math.min(52,gap*.58);samp.branches.forEach((val,i)=>{const bh=val/maxval*plotH,x=l+gap*(i+.5)-bw/2;rounded(ctx,x,t+plotH-bh,bw,bh,6,i%2===0?'#70c6f2':'#f09ed9');text(ctx,fmt(val,2),x+bw/2,t+plotH-bh-10,{size:10,align:'center',color:'#eafafc'});text(ctx,'Rx '+(i+1),x+bw/2,h-19,{size:11,align:'center'});});}
+function updateReadout(samp){const g=geometryAt(nowMs/1000),delta=Math.abs(g.delta);
+ $('clock').textContent=fmt(nowMs,3)+' ms';$('scrub').value=nowMs;
+ $('mDoppler').textContent=fmt(params.fmax,0);$('mF1').textContent=fmt(g.f1,0);$('mF2').textContent=fmt(g.f2,0);$('mDelta').textContent=fmt(delta,0);$('mBeat').textContent=delta<1e-5?'∞':fmt(1000/delta,2);
+ $('powerOne').textContent=fmt(samp.one,3);$('powerFour').textContent=fmt(samp.four,3);$('captured').textContent=fmt(samp.four>1e-12?100*samp.stale/samp.four:0,1)+'%';
+ $('interpret').textContent=samp.one<.15?'Antenna 1 is in a deep fade, but the array may still receive useful signal energy.':samp.stale<.25*samp.four?'Stale beamforming weights are poorly aligned with the current channel.':'The initial combining vector still captures much of the received array energy.';
+ // Steering signatures depend only on the local arrival directions at the train.
+ const ds=Math.sin(g.alpha2)-Math.sin(g.alpha1);let x=0,y=0;for(let n=0;n<4;n++){x+=Math.cos(PI*n*ds);y-=Math.sin(PI*n*ds);}$('spatialOverlap').textContent='Spatial overlap: '+fmt(Math.hypot(x,y)/4,3);
+}
+function render(){if(!params)return;const samp=computeAt(nowMs,getChannel(0).h);updateReadout(samp);drawScene();drawGraph('powerPlot',[{values:cache.map(d=>d.one),color:colors.blue,kind:'one'},{values:cache.map(d=>d.four),color:colors.lime,kind:'four',width:2.6},{values:cache.map(()=>3.2),color:colors.pink,kind:'b',dash:[7,5]}]);drawGraph('combinePlot',[{values:cache.map(d=>d.four),color:colors.lime,kind:'four',width:2.6},{values:cache.map(d=>d.stale),color:colors.amber,kind:'stale',dash:[7,5]},{values:cache.map(d=>d.prediction),color:colors.blue,kind:'pred'}]);drawPhasors(samp);drawAntennaBars(samp);}
+function toggle(play){playing=play;if(play&&nowMs>=params.horizon)nowMs=0;$('play').textContent=play?'❚❚ Pause':'▶ Play';$('play').setAttribute('aria-label',play?'Pause simulation':'Play simulation');lastFrame=null;if(play)requestAnimationFrame(tick);}
+function tick(ts){if(!playing)return;if(lastFrame!==null){nowMs+=Math.min(.08,(ts-lastFrame)/1000)*+$('pace').value;if(nowMs>params.horizon)nowMs%=params.horizon;}lastFrame=ts;render();requestAnimationFrame(tick);}
+function changed(){document.querySelectorAll('.preset').forEach(e=>e.classList.remove('on'));recalc();}
+for(const id of inp)$(id).addEventListener(id==='fc'||id==='horizon'?'change':'input',changed);
+$('play').addEventListener('click',()=>toggle(!playing));$('scrub').addEventListener('input',e=>{nowMs=+e.target.value;if(playing)toggle(false);render();});
+const presets={
+ beat:{speed:350,fc:28,bsX:130,bsY:75,refX:100,refY:88,pow2:35,reflPhase:180,err:50,horizon:3},
+ locked:{speed:350,fc:28,bsX:130,bsY:75,refX:130,refY:75,pow2:50,reflPhase:180,err:50,horizon:3},
+ rapid:{speed:500,fc:60,bsX:160,bsY:30,refX:20,refY:105,pow2:45,reflPhase:180,err:50,horizon:1},
+ slow:{speed:80,fc:3.5,bsX:130,bsY:75,refX:100,refY:88,pow2:35,reflPhase:180,err:50,horizon:10}
+};
+document.querySelectorAll('[data-preset]').forEach(btn=>btn.addEventListener('click',()=>{const pr=presets[btn.dataset.preset];for(const k of Object.keys(pr))$(k).value=pr[k];document.querySelectorAll('.preset').forEach(e=>e.classList.remove('on'));btn.classList.add('on');nowMs=0;recalc();}));
+// Pointer/keyboard positioning of source and reflector in physical world coordinates.
+function pointerWorld(ev){const svg=$('sceneSvg'),pt=svg.createSVGPoint();pt.x=ev.clientX;pt.y=ev.clientY;const tr=svg.getScreenCTM();if(!tr)return null;const v=pt.matrixTransform(tr.inverse());return {x:(v.x-415)/2.16,y:(252-v.y)/2.05};}
+function moveTarget(type,world){if(!world)return;let xId=type==='bs'?'bsX':'refX',yId=type==='bs'?'bsY':'refY';const cx=$(xId),cy=$(yId);cx.value=Math.max(+cx.min,Math.min(+cx.max,Math.round(world.x/5)*5));const yVal=type==='bs'?world.y:-world.y;cy.value=Math.max(+cy.min,Math.min(+cy.max,Math.round(yVal/(+cy.step))*(+cy.step)));changed();}
+for(const [id,type] of [['rp-bs','bs'],['rp-structure','ref']]){
+ const g=$(id);g.addEventListener('pointerdown',ev=>{dragging=type;g.setPointerCapture(ev.pointerId);ev.preventDefault();});
+ g.addEventListener('pointermove',ev=>{if(dragging===type)moveTarget(type,pointerWorld(ev));});
+ g.addEventListener('pointerup',ev=>{if(dragging===type){dragging=null;if(g.hasPointerCapture(ev.pointerId))g.releasePointerCapture(ev.pointerId);}});
+ g.addEventListener('pointercancel',()=>{dragging=null;});
+ g.addEventListener('keydown',ev=>{const step=ev.shiftKey?10:5;let key=ev.key,elX=$(type==='bs'?'bsX':'refX'),elY=$(type==='bs'?'bsY':'refY');if(key==='ArrowRight')elX.value=Math.min(+elX.max,+elX.value+step);else if(key==='ArrowLeft')elX.value=Math.max(+elX.min,+elX.value-step);else if(key==='ArrowUp')elY.value=Math.min(+elY.max,+elY.value+step);else if(key==='ArrowDown')elY.value=Math.max(+elY.min,+elY.value-step);else return;ev.preventDefault();changed();});
+}
+// Rails: decorative static SVG elements.
+const ties=$('rp-ties');for(let x=0;x<=1000;x+=25){const l=document.createElementNS('http://www.w3.org/2000/svg','line');l.setAttribute('x1',x);l.setAttribute('y1',207);l.setAttribute('x2',x);l.setAttribute('y2',297);ties.appendChild(l);}
+let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(render,100);});document.addEventListener('visibilitychange',()=>{if(document.hidden&&playing)toggle(false);});
+// Expose read-only diagnostics for testing and scientific inspection.
+window.DopplerLab={geometryAtMs:ms=>geometryAt(ms/1000),sampleAtMs:ms=>computeAt(ms,getChannel(0).h),getParameters:()=>({...params}),setTimeMs:ms=>{nowMs=Math.max(0,Math.min(params.horizon,ms));render();}};
+recalc();
+})();
+</script>
+</body>
+</html>
